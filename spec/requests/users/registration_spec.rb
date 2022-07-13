@@ -17,7 +17,6 @@ describe 'User Registration' do
 
     it 'registers a user and sends a confirmation email' do
       post user_registration_path, params: params
-      binding.pry
       expect(status).to eq(200)
     end
   end

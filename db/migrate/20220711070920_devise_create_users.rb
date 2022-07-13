@@ -40,6 +40,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.datetime :locked_at
 
       t.string :jti, null: false
+      t.string :hashed_pin
       t.references :role, foreign_key: true, null: false
 
       t.timestamps null: false

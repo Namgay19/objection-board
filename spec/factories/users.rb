@@ -6,5 +6,7 @@ FactoryBot.define do
     last_name { Faker::Superhero.name }
     phone { '17617569' }
     mobile { '17617569' }
+    confirmed_at { DateTime.now }
+    hashed_pin { '123456' }
   end
 end

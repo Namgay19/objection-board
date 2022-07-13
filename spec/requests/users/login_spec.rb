@@ -4,8 +4,16 @@ describe 'User login' do
   let!(:user_1) { create(:user, role: Role.first) }
 
   context 'With valid email to log in' do
-    it 'Renders valid user token and updates status to active if status is inactive' do
+    it 'Renders valid user token' do
       post user_session_path, params: { user: { email: user_1.email, password: user_1.password } }
+      expect(status).to eq(200)
+      expect(response.headers['Authorization']).not_to eq(nil)
+    end
+  end
+
+  context 'With valid pin to log in' do
+    it 'Renders valid user token' do
+      post user_session_path, params: { user: { via_pin: true, pin: user_1.hashed_pin } }
       expect(status).to eq(200)
       expect(response.headers['Authorization']).not_to eq(nil)
     end

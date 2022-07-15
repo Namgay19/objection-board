@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'api/v1/sessions',
       passwords: 'api/v1/passwords',
-      registrations: 'api/v1/registrations'
+      registrations: 'api/v1/registrations',
+      confirmations: 'api/v1/confirmations'
     }, defaults: { format: :json }
   end
 end

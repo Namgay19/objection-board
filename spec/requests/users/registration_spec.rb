@@ -10,7 +10,8 @@ describe 'User Registration' do
           last_name: 'Cena',
           email: 'namgayt7@gmail.com',
           password: 'password',
-          phone: '17619876'
+          phone: '17619876',
+          hashed_pin: '123456'
         }
       }
     }

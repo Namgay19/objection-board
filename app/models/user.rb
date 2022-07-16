@@ -8,4 +8,11 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   belongs_to :role
+
+  validates_presence_of :hashed_pin
+
+  enum gender: { male: 0, female: 5, undefined: 10 }
+  enum status: { active: 0, inactive: 10 }
+
+  delegate :name, to: :role, prefix: true
 end

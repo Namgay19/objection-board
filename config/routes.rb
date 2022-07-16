@@ -13,4 +13,10 @@ Rails.application.routes.draw do
       confirmations: 'api/v1/confirmations'
     }, defaults: { format: :json }
   end
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      post '/graphql', to: 'graphql#execute'
+    end
+  end
 end

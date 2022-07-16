@@ -7,9 +7,9 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    field :current_user, UserType, null: true
+    field :user, UserType, null: true
 
-    def current_user
+    def user
       User.find_by(id: current_user.id)
     end
   end

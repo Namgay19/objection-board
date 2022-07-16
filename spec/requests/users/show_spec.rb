@@ -6,7 +6,7 @@ describe 'Fetch user' do
   let(:params) {
     <<~GQL
       query {
-        current_user {
+        user {
           id
           email
         }

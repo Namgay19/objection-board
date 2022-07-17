@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   belongs_to :role
+  has_many :tasks, dependent: :destroy
 
   validates_presence_of :hashed_pin
 

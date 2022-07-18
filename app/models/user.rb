@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable,
+         :recoverable, :rememberable, :validatable, :confirmable, :async,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   belongs_to :role
@@ -13,7 +13,7 @@ class User < ApplicationRecord
   after_create :set_calendar
 
   def set_calendar
-    UserTaskUpdater.new(self).run
+    SetTasksJob.perform_async(id)
   end
 
   validates_presence_of :hashed_pin

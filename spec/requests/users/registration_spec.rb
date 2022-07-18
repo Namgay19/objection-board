@@ -16,7 +16,7 @@ describe 'User Registration' do
       }
     }
 
-    it 'registers a user and sends a confirmation email' do
+    it 'registers a user and sends a confirmation email', :run_delayed_jobs do
       post user_registration_path, params: params
       expect(status).to eq(200)
     end

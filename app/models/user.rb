@@ -10,6 +10,12 @@ class User < ApplicationRecord
   belongs_to :role
   has_many :tasks, dependent: :destroy
 
+  after_create :set_calendar
+
+  def set_calendar
+    UserTaskUpdater.new(self).run
+  end
+
   validates_presence_of :hashed_pin
 
   enum gender: { male: 0, female: 5, undefined: 10 }

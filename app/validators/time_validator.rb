@@ -7,6 +7,6 @@ class TimeValidator < ActiveModel::Validator
   end
 
   def time_allocated?(record, task)
-    (record.start_time >= task.start_time && record.start_time <= task.end_time) || (record.start_time < task.start_time && record.end_time > task.start_time)
+    (record.start_time > task.start_time && record.start_time < task.end_time) || (record.start_time < task.start_time && record.end_time > task.start_time)
   end
 end

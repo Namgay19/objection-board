@@ -10,8 +10,13 @@ class Task < ApplicationRecord
     new_calls: 20,
     follow_up_calls: 25,
     presentations: 30,
-    miscellaneous: 35
+    miscellaneous: 35,
+    social_media: 40,
+    gossiping: 45,
+    gaming: 50
   }
+
+  enum effect: { positive: 0, negative: 5 }
 
   validates_presence_of :start_time, :end_time
   validates_with TimeValidator

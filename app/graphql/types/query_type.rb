@@ -8,9 +8,16 @@ module Types
     # They will be entry points for queries on your schema.
 
     field :user, UserType, null: true
+    field :task, TaskType, null: true do
+      argument :id, ID, required: true
+    end
 
     def user
       User.find_by(id: current_user.id)
+    end
+
+    def task(id:)
+      Task.find_by(id: id)
     end
   end
 end

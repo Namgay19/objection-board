@@ -1,4 +1,11 @@
 class ObjectionBoardSchema < GraphQL::Schema
+  ERROR_CLASSES = [
+    ActiveRecord::RecordNotFound,
+    ActiveRecord::RecordInvalid,
+    ArgumentError,
+    StandardError
+  ].freeze
+
   mutation(Types::MutationType)
   query(Types::QueryType)
 
@@ -33,5 +40,9 @@ class ObjectionBoardSchema < GraphQL::Schema
   def self.object_from_id(global_id, query_ctx)
     # For example, use Rails' GlobalID library (https://github.com/rails/globalid):
     GlobalID.find(global_id)
+  end
+
+  rescue_from(*ERROR_CLASSES) do |err|
+    raise GraphQL::ExecutionError, err
   end
 end

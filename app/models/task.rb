@@ -14,6 +14,9 @@ class Task < ApplicationRecord
   }
 
   validates_presence_of :start_time, :end_time
+  validates_with TimeValidator
+
+  scope :daily, -> { where(:start_time => DateTime.now.beginning_of_day..DateTime.now.end_of_day) }
 
   def starting_time
     start_time.strftime('%I %p')
@@ -24,6 +27,6 @@ class Task < ApplicationRecord
   end
 
   def duration
-    "#{(end_time - start_time) / 3600} hours"
+    "#{((end_time - start_time) / 3600).round(1)} hours"
   end
 end

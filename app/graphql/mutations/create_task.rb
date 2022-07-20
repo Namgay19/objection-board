@@ -4,6 +4,7 @@ module Mutations
       argument :category, String, required: true
       argument :start_time, GraphQL::Types::ISO8601DateTime, required: true
       argument :end_time, GraphQL::Types::ISO8601DateTime, required: true
+      argument :effect, String, required: false
     end
 
     argument :attributes, CreateAttributes, required: true

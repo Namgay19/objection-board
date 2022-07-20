@@ -16,6 +16,8 @@ class Task < ApplicationRecord
     gaming: 50
   }
 
+  default_scope { order(:start_time)}
+
   enum effect: { positive: 0, negative: 5 }
 
   validates_presence_of :start_time, :end_time

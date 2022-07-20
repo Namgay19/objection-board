@@ -16,7 +16,7 @@ class Task < ApplicationRecord
     gaming: 50
   }
 
-  default_scope { order(:start_time)}
+  default_scope { order(:start_time) }
 
   enum effect: { positive: 0, negative: 5 }
 
@@ -49,6 +49,6 @@ class Task < ApplicationRecord
       yesterdays_time += t.end_time - t.start_time
     end
 
-    "#{((todays_time - yesterdays_time) / 3600).round(1)} hours"
+    ((todays_time - yesterdays_time) / 60).round
   end
 end

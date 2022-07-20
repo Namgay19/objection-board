@@ -7,5 +7,6 @@ module Types
     field :starting_time, String, null: true
     field :ending_time, String, null: true
     field :duration, String, null: true
+    field :extra_time, String, null: true
   end
 end

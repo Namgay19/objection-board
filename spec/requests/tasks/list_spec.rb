@@ -17,6 +17,7 @@ describe 'List task' do
           startingTime
           endingTime
           duration
+          extraTime
         }
       }
     GQL

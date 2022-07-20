@@ -22,6 +22,7 @@ class Task < ApplicationRecord
   validates_with TimeValidator
 
   scope :daily, -> { where(:start_time => DateTime.now.beginning_of_day..DateTime.now.end_of_day) }
+  scope :past_day, -> { where(:start_time => (DateTime.now - 1.day).beginning_of_day..(DateTime.now - 1.day).end_of_day) }
 
   def starting_time
     start_time.strftime('%I %p')
@@ -33,5 +34,19 @@ class Task < ApplicationRecord
 
   def duration
     "#{((end_time - start_time) / 3600).round(1)} hours"
+  end
+
+  def extra_time
+    todays_time = 0
+    yesterdays_time = 0
+    user.tasks.daily.where(category: category).each do |t|
+      todays_time += t.end_time - t.start_time
+    end
+
+    user.tasks.past_day.where(category: category).each do |t|
+      yesterdays_time += t.end_time - t.start_time
+    end
+
+    "#{((todays_time - yesterdays_time) / 3600).round(1)} hours"
   end
 end

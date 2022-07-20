@@ -1,6 +1,6 @@
 module Mutations
   class UpdateUser < BaseMutation
-    class UpdateAttributes < Types::BaseInputObject
+    class UserUpdateAttributes < Types::BaseInputObject
       argument :id, ID, required: false
       argument :email, String, required: false
       argument :first_name, String, required: false
@@ -9,7 +9,7 @@ module Mutations
       argument :mobile, String, required: false
     end
 
-    argument :attributes, UpdateAttributes, required: true
+    argument :attributes, UserUpdateAttributes, required: true
     type Types::UserType
 
     def resolve(attributes:)

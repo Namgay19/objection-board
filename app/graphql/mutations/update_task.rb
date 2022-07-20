@@ -1,13 +1,13 @@
 module Mutations
   class UpdateTask < BaseMutation
-    class UpdateAttributes < Types::BaseInputObject
+    class TaskUpdateAttributes < Types::BaseInputObject
       argument :id, ID, required: true
       argument :category, String, required: false
       argument :start_time, GraphQL::Types::ISO8601DateTime, required: false
       argument :end_time, GraphQL::Types::ISO8601DateTime, required: false
     end
 
-    argument :attributes, UpdateAttributes, required: true
+    argument :attributes, TaskUpdateAttributes, required: true
     type Types::TaskType
 
     def resolve(attributes:)

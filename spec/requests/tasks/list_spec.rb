@@ -18,6 +18,7 @@ describe 'List task' do
           endingTime
           duration
           extraTime
+          durationPerDay
         }
       }
     GQL

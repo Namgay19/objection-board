@@ -1,6 +1,6 @@
 class TimeValidator < ActiveModel::Validator
   def validate(record)
-    daily_tasks = record.user.tasks.daily
+    daily_tasks = record.user.tasks.by_day(record.start_time)
     if daily_tasks.any? { |task| time_allocated?(record, task) }
       record.errors.add :base, 'You have already allocated the time for another task'
     end

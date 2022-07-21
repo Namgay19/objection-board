@@ -8,5 +8,6 @@ module Types
     field :ending_time, String, null: true
     field :duration, String, null: true
     field :extra_time, String, null: true
+    field :duration_per_day, String, null: true
   end
 end

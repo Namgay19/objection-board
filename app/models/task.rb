@@ -59,6 +59,28 @@ class Task < ApplicationRecord
     ((todays_time/total_duration) * 100).round(2)
   end
 
+  def duration_per_week
+    total_duration = 0
+
+    todays_time = total_time_by_week
+    user.tasks.by_week(start_time).each do |t|
+      total_duration += t.end_time - t.start_time
+    end
+
+    ((todays_time/total_duration) * 100).round(2)
+  end
+
+  def duration_per_month
+    total_duration = 0
+
+    todays_time = total_time_by_month
+    user.tasks.by_month(start_time).each do |t|
+      total_duration += t.end_time - t.start_time
+    end
+
+    ((todays_time/total_duration) * 100).round(2)
+  end
+
   def total_time_by_day
     todays_total = 0
     user.tasks.by_day(start_time).where(category: category).each do |t|

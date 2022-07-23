@@ -19,6 +19,8 @@ describe 'List task' do
           duration
           extraTime
           durationPerDay
+          durationPerWeek
+          durationPerMonth
           totalTimeByDay
           totalTimeByWeek
           totalTimeByMonth
@@ -29,7 +31,6 @@ describe 'List task' do
 
   it 'lists all task' do
     post api_v1_graphql_path, params: { query: params }, headers: header_params(token: token)
-    binding.pry
     expect(status).to eq(200)
   end
 end

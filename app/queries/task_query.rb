@@ -27,6 +27,8 @@ class TaskQuery
 
   def filter_by_time(t)
     case filter_type
+    when "year"
+      t.where(start_time: start_date.beginning_of_year..start_date.end_of_year).select("DISTINCT ON (category) *")
     when "month"
       t.where(start_time: start_date.beginning_of_month..start_date.end_of_month).select("DISTINCT ON (category) *")
     when "week"

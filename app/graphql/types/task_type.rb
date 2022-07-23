@@ -11,8 +11,10 @@ module Types
     field :duration_per_day, String, null: true
     field :duration_per_week, String, null: true
     field :duration_per_month, String, null: true
+    field :duration_per_year, String, null: true
     field :total_time_by_day, String, null: true
     field :total_time_by_week, String, null: true
     field :total_time_by_month, String, null: true
+    field :total_time_by_year, String, null: true
   end
 end

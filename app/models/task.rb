@@ -23,7 +23,8 @@ class Task < ApplicationRecord
 
   scope :by_day, ->(date) { where(:start_time => date.beginning_of_day..date.end_of_day) }
   scope :by_week, ->(date) { where(:start_time => date.beginning_of_week..date.end_of_week) }
-  scope :by_month, ->(date) { where(:start_time => date.beginning_of_week..date.end_of_week) }
+  scope :by_month, ->(date) { where(:start_time => date.beginning_of_month..date.end_of_month) }
+  scope :by_year, ->(date) { where(:start_time => date.beginning_of_year..date.end_of_year) }
 
   def starting_time
     start_time.strftime('%I %p')
@@ -81,6 +82,17 @@ class Task < ApplicationRecord
     ((todays_time/total_duration) * 100).round(2)
   end
 
+  def duration_per_year
+    total_duration = 0
+
+    todays_time = total_time_by_year
+    user.tasks.by_year(start_time).each do |t|
+      total_duration += t.end_time - t.start_time
+    end
+
+    ((todays_time/total_duration) * 100).round(2)
+  end
+
   def total_time_by_day
     todays_total = 0
     user.tasks.by_day(start_time).where(category: category).each do |t|
@@ -100,6 +112,14 @@ class Task < ApplicationRecord
   def total_time_by_month
     todays_total = 0
     user.tasks.by_month(start_time).where(category: category).each do |t|
+      todays_total += t.end_time - t.start_time
+    end
+    (todays_total / 60).round
+  end
+
+  def total_time_by_year
+    todays_total = 0
+    user.tasks.by_year(start_time).where(category: category).each do |t|
       todays_total += t.end_time - t.start_time
     end
     (todays_total / 60).round

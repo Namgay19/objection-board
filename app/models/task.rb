@@ -57,6 +57,8 @@ class Task < ApplicationRecord
       total_duration += t.end_time - t.start_time
     end
 
+    total_duration = (total_duration / 60)
+
     ((todays_time/total_duration) * 100).round(2)
   end
 
@@ -67,6 +69,8 @@ class Task < ApplicationRecord
     user.tasks.by_week(start_time).each do |t|
       total_duration += t.end_time - t.start_time
     end
+
+    total_duration = (total_duration / 60)
 
     ((todays_time/total_duration) * 100).round(2)
   end
@@ -79,6 +83,8 @@ class Task < ApplicationRecord
       total_duration += t.end_time - t.start_time
     end
 
+    total_duration = (total_duration / 60)
+
     ((todays_time/total_duration) * 100).round(2)
   end
 
@@ -89,6 +95,8 @@ class Task < ApplicationRecord
     user.tasks.by_year(start_time).each do |t|
       total_duration += t.end_time - t.start_time
     end
+
+    total_duration = (total_duration / 60)
 
     ((todays_time/total_duration) * 100).round(2)
   end

@@ -46,7 +46,9 @@ class Task < ApplicationRecord
       yesterdays_time += t.end_time - t.start_time
     end
 
-    ((todays_time - yesterdays_time) / 60).round
+    yesterdays_time = (yesterdays_time / 60)
+
+    todays_time - yesterdays_time
   end
 
   def duration_per_day

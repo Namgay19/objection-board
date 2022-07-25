@@ -10,7 +10,6 @@ class TaskQuery
     tasks
       .then { |t| filter_by_time(t) }
       .then { |t| filter_by_effect(t) }
-      .then { |t| order_by_time(t) }
   end
 
   def tasks
@@ -34,7 +33,7 @@ class TaskQuery
     when "weekly"
       t.where(start_time: start_date.beginning_of_week..start_date.end_of_week).select("DISTINCT ON (category) *")
     else
-      t.where(start_time: start_date.beginning_of_day..start_date.end_of_day)
+      t.where(start_time: start_date.beginning_of_day..start_date.end_of_day).order(:start_time)
     end
   end
 

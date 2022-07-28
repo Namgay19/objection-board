@@ -27,11 +27,11 @@ class Task < ApplicationRecord
   scope :by_year, ->(date) { where(:start_time => date.beginning_of_year..date.end_of_year) }
 
   def starting_time
-    start_time.strftime('%I %p')
+    start_time.strftime('%l:%M %p')
   end
 
   def ending_time
-    end_time.strftime('%I %p')
+    end_time.strftime('%l:%M %p')
   end
 
   def duration

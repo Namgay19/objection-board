@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   belongs_to :role
   has_many :tasks, dependent: :destroy
+  has_many :dream_accounts, dependent: :destroy
 
   after_create :set_calendar
 

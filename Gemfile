@@ -65,3 +65,4 @@ gem 'sidekiq'
 gem 'devise-async'
 gem 'apollo_upload_server', '2.1'
 gem 'file_validators'
+gem "aws-sdk-s3", require: false

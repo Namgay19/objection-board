@@ -11,5 +11,6 @@ module Types
     field :annual_revenue, Integer, null: true
     field :identifier, String, null: true
     field :image, ImageType, null: true
+    field :questions, [QuestionType], null: true
   end
 end

@@ -7,5 +7,8 @@ module Types
     field :create_dream_account, mutation: Mutations::CreateDreamAccount
     field :update_dream_account, mutation: Mutations::UpdateDreamAccount
     field :delete_dream_account, mutation: Mutations::DeleteDreamAccount
+    field :create_question, mutation: Mutations::CreateQuestion
+    field :update_question, mutation: Mutations::UpdateQuestion
+    field :delete_question, mutation: Mutations::DeleteQuestion
   end
 end

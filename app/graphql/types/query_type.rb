@@ -16,8 +16,20 @@ module Types
     field :tasks, [TaskType], null: true do
       argument :params, Attributes::TaskQuery, required: false
     end
+
+    field :dream_account, DreamAccountType, null: true do
+      argument :id, ID, required: true
+    end
     field :dream_accounts, [DreamAccountType], null: true do
       argument :params, Attributes::TaskQuery, required: false
+    end
+
+    field :objection, ObjectionType, null: true do
+      argument :id, ID, required: true
+    end
+
+    field :objections, [ObjectionType], null: true do
+      argument :params, Attributes::ObjectionQuery, required: false
     end
 
     def user
@@ -32,6 +44,10 @@ module Types
       TaskQuery.new(params.to_h, current_user).run
     end
 
+    def dream_account(id:)
+      DreamAccount.find_by(id: id)
+    end
+
     def dream_accounts(params: {})
       begin
         accounts = DreamAccountsQuery.new(params.to_h, current_user).run
@@ -41,5 +57,22 @@ module Types
       end
       records
     end
+
+    def objection(id:)
+      objection = Objection.find_by(id: id)
+      objection.update_column(:view_count, objection.view_count + 1) if objection.present?
+      objection
+    end
+
+    def objections(params: {})
+      begin
+        objections = ObjectionsQuery.new(params.to_h, current_user).run
+        _, records = pagy(objections, page: params.to_h.fetch(:page, 1), items: params.to_h.fetch(:per_page, 10))
+      rescue Pagy::OverflowError
+        records = []
+      end
+      records
+    end
+
   end
 end

@@ -10,6 +10,7 @@ class User < ApplicationRecord
   belongs_to :role
   has_many :tasks, dependent: :destroy
   has_many :dream_accounts, dependent: :destroy
+  has_many :objections, dependent: :destroy
 
   after_create :set_calendar
 
@@ -23,4 +24,8 @@ class User < ApplicationRecord
   enum status: { active: 0, inactive: 10 }
 
   delegate :name, to: :role, prefix: true
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

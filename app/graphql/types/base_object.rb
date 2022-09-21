@@ -7,5 +7,9 @@ module Types
     def current_user
       context[:current_user]
     end
+
+    def created_at
+      object.created_at.strftime('%d/%m/%Y %H:%M:%S')
+    end
   end
 end

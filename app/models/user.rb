@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :dream_accounts, dependent: :destroy
   has_many :objections, dependent: :destroy
+  has_many :books, dependent: :destroy
 
   after_create :set_calendar
 

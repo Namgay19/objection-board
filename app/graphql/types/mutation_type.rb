@@ -32,5 +32,13 @@ module Types
     field :chapter_create, mutation: Mutations::ChapterCreate
     field :chapter_update, mutation: Mutations::ChapterUpdate
     field :chapter_delete, mutation: Mutations::ChapterDelete
+
+    field :video_create, mutation: Mutations::VideoCreate
+    field :video_delete, mutation: Mutations::VideoDelete
+    field :video_update, mutation: Mutations::VideoUpdate
+
+    field :audio_delete, mutation: Mutations::AudioDelete
+    field :audio_update, mutation: Mutations::AudioUpdate
+    field :audio_create, mutation: Mutations::AudioCreate
   end
 end

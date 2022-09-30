@@ -40,5 +40,9 @@ module Types
     field :audio_delete, mutation: Mutations::AudioDelete
     field :audio_update, mutation: Mutations::AudioUpdate
     field :audio_create, mutation: Mutations::AudioCreate
+
+    field :story_delete, mutation: Mutations::StoryDelete
+    field :story_update, mutation: Mutations::StoryUpdate
+    field :story_create, mutation: Mutations::StoryCreate
   end
 end

@@ -15,6 +15,10 @@ class ObjectionsQuery
   end
 
   def sort_by
-    "#{params[:sort_by]} DESC" || 'created_at DESC'
+    if params[:sort_by].present?
+      "#{params[:sort_by]} DESC"
+    else
+      'created_at DESC'
+    end
   end
 end

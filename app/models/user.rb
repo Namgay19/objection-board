@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :dream_accounts, dependent: :destroy
   has_many :objections, dependent: :destroy
-  has_many :books, dependent: :destroy
+  has_many :books, foreign_key: :creator_id, dependent: :destroy
   has_many :audios, dependent: :destroy
   has_many :videos, dependent: :destroy
   has_many :stories, dependent: :destroy

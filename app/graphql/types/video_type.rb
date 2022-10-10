@@ -3,6 +3,7 @@
 module Types
   class VideoType < Types::BaseObject
     field :id, ID, null: false
+    field :user, UserType, null: false
     field :user_id, ID, null: false
     field :title, String
     field :description, String

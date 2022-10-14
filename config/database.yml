@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: objection_development
+  
+test:
+  <<: *default
+  database: objection_test
+
+production:
+  <<: *default
+  database: objection_production
+  username: nenzin
+  password: <%= ENV['OBJECTION_DATABASE_PASSWORD'] %>

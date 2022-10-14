@@ -8,9 +8,12 @@ module Mutations
     argument :attributes, Types::ContentInputType, required: true
 
     def resolve(attributes:)
-      note = ::Note.new(**attributes)
+      params = attributes.to_h.except(:image_ids)
+      image_ids = attributes.to_h[:image_ids]
+      note = ::Note.new(params)
       raise GraphQL::ExecutionError.new "Error creating note", extensions: note.errors.to_hash unless note.save
 
+      associate_images(image_ids, note)
       note
     end
   end

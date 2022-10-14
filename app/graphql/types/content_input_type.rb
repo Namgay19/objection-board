@@ -6,5 +6,6 @@ module Types
     argument :book_id, Integer, required: false
     argument :title, String, required: false
     argument :description, String, required: false
+    argument :image_ids, [ID], required: false
   end
 end

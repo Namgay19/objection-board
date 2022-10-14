@@ -44,5 +44,7 @@ module Types
     field :story_delete, mutation: Mutations::StoryDelete
     field :story_update, mutation: Mutations::StoryUpdate
     field :story_create, mutation: Mutations::StoryCreate
+
+    field :image_create, mutation: Mutations::ImageCreate
   end
 end

@@ -1,3 +1,2 @@
 class Note < Content
-  
 end

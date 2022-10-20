@@ -46,5 +46,11 @@ module Types
     field :story_create, mutation: Mutations::StoryCreate
 
     field :image_create, mutation: Mutations::ImageCreate
+
+    field :yearly_revenue_delete, mutation: Mutations::RevenueDelete
+    field :yearly_revenue_update, mutation: Mutations::RevenueUpdate
+    field :yearly_revenue_create, mutation: Mutations::RevenueCreate
+
+    field :daily_revenue_update, mutation: Mutations::DailyRevenueUpdate
   end
 end

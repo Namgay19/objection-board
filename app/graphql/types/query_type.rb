@@ -64,12 +64,35 @@ module Types
       argument :params, Attributes::BookQuery, required: false
     end
 
+    field :yearly_revenue, RevenueType, null: true do
+      argument :id, ID, required: true
+    end
+
+    field :yearly_revenues, [RevenueType], null: true
+
+    field :revenue_goals, RevenueInfosType, null: true do
+      argument :params, Attributes::RevenueQuery, required: false
+    end
+
     def user
       User.find_by(id: current_user.id)
     end
 
     def task(id:)
       Task.find_by(id: id)
+    end
+
+    def revenue(id:)
+      Revenue.find_by(id: id)
+    end
+
+    def revenues
+      Revenue.all
+    end
+
+    def revenue_goals(params: {})
+      revenues, meta_info = RevenuesQuery.new(params.to_h, current_user).run
+      { revenues: revenues, meta_info: meta_info }
     end
 
     def tasks(params: {})

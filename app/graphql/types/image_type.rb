@@ -4,7 +4,11 @@ module Types
     field :url, String, null: false
 
     def url
-      Rails.application.routes.url_helpers.rails_blob_path(object.avatar, only_path: true)
+      if object.avatar.nil?
+        nil
+      else
+        Rails.application.routes.url_helpers.rails_blob_path(object.avatar, only_path: true)
+      end
     end
   end
 end

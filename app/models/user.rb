@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :audios, dependent: :destroy
   has_many :videos, dependent: :destroy
   has_many :stories, dependent: :destroy
+  has_many :revenues, dependent: :destroy
 
   after_create :set_calendar
 

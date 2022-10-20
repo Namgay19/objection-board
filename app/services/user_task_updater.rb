@@ -6,7 +6,7 @@ class UserTaskUpdater
   end
 
   def run
-    (DateTime.now..DateTime.new(2022, 10, 1)).each do |day|
+    (DateTime.now..DateTime.now + 1.year).each do |day|
       starting_hour = 9
       starting_time = day.to_time.beginning_of_day + starting_hour.hours
       Task.categories.keys.each do |category|

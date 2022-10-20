@@ -74,6 +74,16 @@ module Types
       argument :params, Attributes::RevenueQuery, required: false
     end
 
+    field :yearly_deal, DealType, null: true do
+      argument :id, ID, required: true
+    end
+
+    field :yearly_deals, [DealType], null: true
+
+    field :deal_goals, DealInfosType, null: true do
+      argument :params, Attributes::RevenueQuery, required: false
+    end
+
     def user
       User.find_by(id: current_user.id)
     end
@@ -82,17 +92,30 @@ module Types
       Task.find_by(id: id)
     end
 
-    def revenue(id:)
+    def yearly_revenue(id:)
       Revenue.find_by(id: id)
     end
 
-    def revenues
+    def yearly_revenues
       Revenue.all
     end
 
     def revenue_goals(params: {})
       revenues, meta_info = RevenuesQuery.new(params.to_h, current_user).run
       { revenues: revenues, meta_info: meta_info }
+    end
+
+    def yearly_deal(id:)
+      Deal.find_by(id: id)
+    end
+
+    def yearly_deals
+      Deal.all
+    end
+
+    def deal_goals(params: {})
+      deals, meta_info = DealsQuery.new(params.to_h, current_user).run
+      { deals: deals, meta_info: meta_info }
     end
 
     def tasks(params: {})

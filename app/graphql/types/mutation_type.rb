@@ -52,5 +52,11 @@ module Types
     field :yearly_revenue_create, mutation: Mutations::RevenueCreate
 
     field :daily_revenue_update, mutation: Mutations::DailyRevenueUpdate
+
+    field :yearly_deal_delete, mutation: Mutations::DealDelete
+    field :yearly_deal_update, mutation: Mutations::DealUpdate
+    field :yearly_deal_create, mutation: Mutations::DealCreate
+
+    field :daily_deal_update, mutation: Mutations::DailyDealUpdate
   end
 end

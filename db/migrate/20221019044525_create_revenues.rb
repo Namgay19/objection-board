@@ -5,7 +5,7 @@ class CreateRevenues < ActiveRecord::Migration[7.0]
       t.integer :sales_target, default: 0, null: false
       t.integer :sales_amount, default: 0, null: false
       t.string :currency
-      t.datetime :notificaton_time
+      t.datetime :notification_time
       t.datetime :year
 
       t.timestamps

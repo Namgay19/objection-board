@@ -7,7 +7,7 @@ class RevenuesQuery
   end
 
   RevenueGoal = Struct.new(:id, :identifier, :total_revenue, :target_comparison, :target_to_achieve, :on_target, :currency)
-  MetaInfo = Struct.new(:daily_target, :weekly_target, :monthly_target, :yearly_target)
+  MetaInfo = Struct.new(:daily_target, :weekly_target, :monthly_target, :yearly_target, :client_annual_revenue)
 
   def run
     if params[:filter_type] == 'year'
@@ -19,7 +19,7 @@ class RevenuesQuery
     else
       records = daily_returns
     end
-    meta_info = MetaInfo.new(revenue.daily_target, revenue.weekly_target, revenue.monthly_target, revenue.sales_target)
+    meta_info = MetaInfo.new(revenue.daily_target, revenue.weekly_target, revenue.monthly_target, revenue.sales_target, revenue.client_annual_revenue)
     [records, meta_info]
   end
 

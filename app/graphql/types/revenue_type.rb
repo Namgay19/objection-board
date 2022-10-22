@@ -5,6 +5,7 @@ module Types
     field :id, ID, null: false
     field :user_id, Integer, null: false
     field :sales_target, Integer
+    field :client_annual_revenue, Integer
     field :sales_amount, Integer
     field :currency, String
     field :notificaton_time, GraphQL::Types::ISO8601DateTime

@@ -54,6 +54,8 @@ class RevenuesQuery
   end
 
   def monthly_returns
+    return [] if revenue.nil?
+
     total_revenue = 0
     revenue.daily_revenues.each_with_object([]) do |daily_revenue, result|
       total_revenue += daily_revenue.amount
@@ -73,6 +75,8 @@ class RevenuesQuery
   end
 
   def weekly_returns
+    return [] if revenue.nil?
+
     total_revenue = 0
     counter = 1
 
@@ -95,6 +99,8 @@ class RevenuesQuery
   end
 
   def daily_returns
+    return [] if revenue.nil?
+
     revenue.daily_revenues.by_days(week).each_with_object([]) do |daily_revenue, result|
       result << RevenueGoal.new(
         daily_revenue.id,

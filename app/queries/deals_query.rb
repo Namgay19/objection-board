@@ -53,6 +53,8 @@ class DealsQuery
   end
 
   def monthly_returns
+    return [] if deal.nil?
+
     total_deal = 0
     deal.daily_deals.each_with_object([]) do |daily_deal, result|
       total_deal += daily_deal.amount
@@ -71,6 +73,8 @@ class DealsQuery
   end
 
   def weekly_returns
+    return [] if deal.nil?
+
     total_deal = 0
     counter = 1
 
@@ -92,6 +96,8 @@ class DealsQuery
   end
 
   def daily_returns
+    return [] if deal.nil?
+
     deal.daily_deals.by_days(week).each_with_object([]) do |daily_deal, result|
       result << DealGoal.new(
         daily_deal.id,

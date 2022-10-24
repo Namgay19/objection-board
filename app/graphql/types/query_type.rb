@@ -84,8 +84,14 @@ module Types
       argument :params, Attributes::RevenueQuery, required: false
     end
 
+    field :notifications, [NotificationType], null: true
+
     def user
       User.find_by(id: current_user.id)
+    end
+
+    def notifications
+      Notification.limit(10)
     end
 
     def task(id:)

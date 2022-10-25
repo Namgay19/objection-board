@@ -68,7 +68,9 @@ module Types
       argument :id, ID, required: true
     end
 
-    field :yearly_revenues, [RevenueType], null: true
+    field :yearly_revenues, [RevenueType], null: true do
+      argument :params, Attributes::YearlyQuery, required: false
+    end
 
     field :revenue_goals, RevenueInfosType, null: true do
       argument :params, Attributes::RevenueQuery, required: false
@@ -78,7 +80,9 @@ module Types
       argument :id, ID, required: true
     end
 
-    field :yearly_deals, [DealType], null: true
+    field :yearly_deals, [DealType], null: true do
+      argument :params, Attributes::YearlyQuery, required: false
+    end
 
     field :deal_goals, DealInfosType, null: true do
       argument :params, Attributes::RevenueQuery, required: false
@@ -102,8 +106,12 @@ module Types
       Revenue.find_by(id: id)
     end
 
-    def yearly_revenues
-      Revenue.all
+    def yearly_revenues(params: {})
+      if params[:year].present?
+        Revenue.where(year: params[:year].beginning_of_year)
+      else
+        Revenue.all
+      end
     end
 
     def revenue_goals(params: {})
@@ -115,8 +123,12 @@ module Types
       Deal.find_by(id: id)
     end
 
-    def yearly_deals
-      Deal.all
+    def yearly_deals(params: {})
+      if params[:year].present?
+        Deal.where(year: params[:year].beginning_of_year)
+      else
+        Deal.all
+      end
     end
 
     def deal_goals(params: {})

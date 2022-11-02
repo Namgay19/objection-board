@@ -19,7 +19,7 @@ class RevenuesQuery
     else
       records = daily_returns
     end
-    meta_info = MetaInfo.new(revenue.daily_target, revenue.weekly_target, revenue.monthly_target, revenue.sales_target, revenue.client_annual_revenue)
+    meta_info = MetaInfo.new(revenue&.daily_target, revenue&.weekly_target, revenue&.monthly_target, revenue&.sales_target, revenue&.client_annual_revenue)
     [records, meta_info]
   end
 

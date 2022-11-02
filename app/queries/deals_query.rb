@@ -19,7 +19,7 @@ class DealsQuery
     else
       records = daily_returns
     end
-    meta_info = MetaInfo.new(deal.daily_target, deal.weekly_target, deal.monthly_target, deal.deal_target)
+    meta_info = MetaInfo.new(deal&.daily_target, deal&.weekly_target, deal&.monthly_target, deal&.deal_target)
     [records, meta_info]
   end
 

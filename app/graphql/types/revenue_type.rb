@@ -8,7 +8,7 @@ module Types
     field :client_annual_revenue, Integer
     field :sales_amount, Integer
     field :currency, String
-    field :notificaton_time, GraphQL::Types::ISO8601DateTime
+    field :notification_time, GraphQL::Types::ISO8601DateTime
     field :year, GraphQL::Types::ISO8601DateTime
   end
 end

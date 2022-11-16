@@ -4,7 +4,7 @@ class Revenue < ApplicationRecord
   has_many :daily_revenues, dependent: :destroy
 
   validates_presence_of :sales_target, :year
-  validates_each :year do |record, attr, value|
+  validates_each :year, on: :create do |record, attr, value|
     record.errors.add(attr, 'revenue already set for year') if Revenue.where(year: value.beginning_of_year).exists?
   end
 

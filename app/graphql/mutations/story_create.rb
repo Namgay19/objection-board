@@ -17,6 +17,7 @@ module Mutations
       params = attributes.to_h.except(:image_ids)
       image_ids = attributes.to_h[:image_ids]
       story = ::Story.new(params)
+      story.user = current_user
       raise GraphQL::ExecutionError.new "Error creating story", extensions: story.errors.to_hash unless story.save
 
       associate_images(image_ids, story)
